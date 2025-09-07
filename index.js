@@ -21,6 +21,18 @@ export default function SearchAPI({ delay = 1000, safeSearch = true } = {}) {
     return text;
   }
 
+  // Helper: decode DDG redirect URLs
+  function decodeDDGLink(url) {
+    try {
+      const parsed = new URL(url, "https://duckduckgo.com");
+      const uddg = parsed.searchParams.get("uddg");
+      if (uddg) return decodeURIComponent(uddg);
+      return url;
+    } catch {
+      return url;
+    }
+  }
+
   // Text search
   async function text(query, pages = 1, maxResults = 20) {
     const results = [];
@@ -37,9 +49,11 @@ export default function SearchAPI({ delay = 1000, safeSearch = true } = {}) {
         const titleEl = $(el).find("a.result__a");
         const snippetEl = $(el).find(".result__snippet");
         if (titleEl.length) {
+          let link = titleEl.attr("href") || "";
+          link = decodeDDGLink(link); // decode redirect
           results.push({
             title: titleEl.text(),
-            link: titleEl.attr("href"),
+            link,
             snippet: snippetEl.text(),
           });
         }

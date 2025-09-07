@@ -1,0 +1,28 @@
+{
+  "name": "@hammerhead/searchapi",
+  "version": "1.0.0",
+  "description": "A lightweight Node.js ES module for DuckDuckGo and Wikipedia search without API keys",
+  "main": "index.js",
+  "type": "module",
+  "keywords": [
+    "duckduckgo",
+    "wikipedia",
+    "search",
+    "images",
+    "instant answer",
+    "es module",
+    "nodejs"
+  ],
+  "author": "Alvie Gilbert",
+  "license": "MIT",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.12"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alvieg/searchapi"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
